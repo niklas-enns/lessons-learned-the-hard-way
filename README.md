@@ -25,8 +25,9 @@ public class Client {
     String id;
 
 }
+```
 
-###### Error Symptoms
+## Error Symptoms
 Dozens of `org.springframework.orm.ObjectOptimisticLockingFailureException: Row was updated or deleted by another transaction (or unsaved-value mapping was incorrect)`
 
 ### Solution
