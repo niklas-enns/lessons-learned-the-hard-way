@@ -28,7 +28,9 @@ public class Client {
 ```
 
 ### Error Symptoms
-Dozens of `org.springframework.orm.ObjectOptimisticLockingFailureException: Row was updated or deleted by another transaction (or unsaved-value mapping was incorrect)`
+Dozens of `org.springframework.orm.ObjectOptimisticLockingFailureException: Row was updated or deleted by another transaction (or unsaved-value mapping was incorrect)`.
+ 
+Suprisingly, this exception was thrown in a findByProperty-method of a Repository. Hibernate treatet the Entity as dirty, so it flushed the persistence context (= SQL UPDATE) before executing the select query. That update caused the OptimisticLockException.
 
 ### Solution
 Implement equals and hashCode on the Client class. Clients are held in a Set of the owning entity, therefore proper equals and hashCode implementations are needed.
